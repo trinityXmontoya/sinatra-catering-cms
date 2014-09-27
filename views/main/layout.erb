@@ -1,0 +1,22 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title> Hannah's Dad | Catering</title>
+  <%= stylesheet_link_tag 'style'%>
+  <%= javascript_script_tag 'app'%>
+</head>
+<body>
+  <div class="logo">CATERING</div>
+  <nav>
+    <%= link_to "Home", "/home" %>
+    <%= link_to "About", "/about" %>
+    <%= link_to "Menu", "/menu" %>
+    <%= link_to "Testimonials", "/testimonials" %>
+    <%= link_to "Contact", "/contact" %>
+  </nav>
+
+  <%= yield %>
+
+</body>
+</html>
+
