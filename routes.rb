@@ -100,10 +100,34 @@ class CateringApp
     redirect '/'
   end
 
-  post 'admin/categories' do
+  post '/admin/categories' do
+    create_obj("category",params[:category])
   end
 
-  post 'admin/menu_items' do
+  post '/admin/menu_items' do
+    create_obj("menu_item",params[:menu_item])
+  end
+
+  post '/admin/site_photos' do
+    create_obj("site_photos",params[:category])
+  end
+
+  def success_msg
+    flash[:notice]="Succesfully created"
+  end
+
+  def error_msg
+    flash[:notice]="Error saving."
+  end
+
+  def create_obj(type,obj)
+    if type.includes? "_"
+      obj = type.split("_").map {|x| x.capitalize}.join
+    else
+      obj = type.capitalize.constantize.new(obj)
+    end
+    obj.save ? success_msg : error_msg
+    redirect "/admin/#{type.pluralize}"
   end
 
   # REDIRECT
