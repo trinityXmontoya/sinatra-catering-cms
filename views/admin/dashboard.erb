@@ -8,10 +8,17 @@
 </ol>
 
 
-<div id="categories"></div>
-<div id="menu_items"></div>
-<div id="testimonials"></div>
-<div id="site_photos"></div>
+<div id="categories" class="admin_opts">
+</div>
+
+<div id="menu_items" class="admin_opts">
+</div>
+
+<div id="testimonials" class="admin_opts">
+</div>
+
+<div id="site_photos" class="admin_opts">
+</div>
 
 <table>
   <tr>
@@ -28,9 +35,7 @@
 
 
 <h1></h1>
-<% @.each do || %>
-  <%= . %>
-  <%= . %>
-  <%= . %>
-  <%=
-<%= end %>
+<% @categories.each do |c| %>
+  <%= c.name %>
+  <%= c.description %>
+<% end %>
