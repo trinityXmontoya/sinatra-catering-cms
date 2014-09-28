@@ -26,10 +26,8 @@ class CateringApp < Sinatra::Application
 
     js :admin, [
       '/js/admin.js',
-      '/js/sb-admin-2.js',
-      '/js/plugins/dataTables/*.js',
       '/js/plugins/metisMenu/*.js',
-      '/js/plugins/morris/*.js'
+      '/js/sb-admin-2.js'
     ]
 
     serve '/css', :from => 'public/stylesheets'
