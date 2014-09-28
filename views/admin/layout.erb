@@ -1,4 +1,18 @@
-<nav>
-  <%= link_to "Back to site", "/"%>
-</nav>
-<%= yield %>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title> Hannah's Dad | Catering | Admin</title>
+  <%= stylesheet_link_tag 'admin'%>
+  <%= javascript_include_tag 'admin'%>
+</head>
+<body>
+  <nav>
+    <%= link_to "Back to site", "/"%>
+    <% if current_user %>
+      <%= button_to "Logout", "/logout", method: :delete %>
+    <% end %>
+  </nav>
+  <%= flash[:notice] %>
+  <%= yield %>
+</body>
+</html>

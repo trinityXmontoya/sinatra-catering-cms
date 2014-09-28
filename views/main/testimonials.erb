@@ -1,3 +1,4 @@
+<%= flash[:notice]%>
 <% @testimonials.each do |t| %>
   <div class="testimonial">
     Name: <%= t.name %>
@@ -7,4 +8,9 @@
     Comment: <%= t.comment %>
   </div>
   <hr>
+<% end %>
+
+
+<% form_for @testimonial, '/testimonials' do %>
+
 <% end %>

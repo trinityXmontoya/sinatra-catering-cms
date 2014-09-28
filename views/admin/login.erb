@@ -1,1 +1,10 @@
-login page
+<% form_tag '/login' do %>
+
+  <%= label_tag :username %>
+  <%= text_field_tag :username, name: 'admin[username]' %>
+
+  <%= label_tag :password %>
+  <%= password_field_tag :password, name: 'admin[password]' %>
+
+  <%= submit_tag %>
+<% end %>

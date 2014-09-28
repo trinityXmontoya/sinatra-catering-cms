@@ -1,9 +1,9 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title> Hannah's Dad | Catering</title>
+  <title> Hannah's Dad | Catering | Main</title>
   <%= stylesheet_link_tag 'style'%>
-  <%= javascript_script_tag 'app'%>
+  <%= javascript_include_tag 'app'%>
 </head>
 <body>
   <div class="logo">CATERING</div>
@@ -13,10 +13,10 @@
     <%= link_to "Menu", "/menu" %>
     <%= link_to "Testimonials", "/testimonials" %>
     <%= link_to "Contact", "/contact" %>
+    <%= link_to "Login", "/login" %>
   </nav>
-
+  <%= flash[:notice] %>
   <%= yield %>
 
 </body>
 </html>
-

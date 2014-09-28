@@ -1,16 +1,14 @@
-class CateringApp < Sinatra::Application
+class CateringApp
 
   # require all models
   Dir["./models/*.rb"].each {|file| require file }
 
   # MAIN
   # ------------------------------------
-  configure do
-    set :erb, :layout => :'main/layout'
-  end
+  set :erb, layout: :'main/layout'
 
   get '/' do
-    erb :'main/index'
+    erb :'main/index', layout: :'main/layout'
   end
 
   get '/menu' do
@@ -28,13 +26,8 @@ class CateringApp < Sinatra::Application
 
   get '/testimonials' do
     @testimonials = Testimonial.all
+    @testimonial = Testimonial.new
     erb :'main/testimonials'
-  end
-
-  # ADMIN
-  # ------------------------------------
-  get '/login' do
-    erb :'admin/login', layout: :'admin/layout'
   end
 
   post '/testimonials' do
@@ -46,15 +39,54 @@ class CateringApp < Sinatra::Application
     end
   end
 
-  post '/categories' do
+  # ADMIN
+  # ------------------------------------
+
+  before '/admin/*' do
+    authorize!
   end
 
-  post '/menu_items' do
+  get '/login' do
+    erb :'admin/login', layout: :'admin/layout'
+  end
+
+  post '/login' do
+    if verify_credentials(params[:admin])
+      session[:user] = "admin"
+      redirect '/testimonials'
+    else
+      flash[:notice] = "Error logging in."
+      redirect '/login'
+    end
+  end
+
+  get '/admin' do
+    @categories = Category.all
+    @category = Category.new
+    @menu_items = MenuItem.all
+    @menu_item = MenuItem.new
+    @testimonials = Testimonial.all
+    @testimonial = Testimonial.new
+    erb :'admin/dashboard'
+  end
+
+  delete '/logout' do
+    session.clear
+    flash[:notice] = "Logged out"
+    redirect '/'
+  end
+
+  post 'admin/categories' do
+  end
+
+  post 'admin/menu_items' do
   end
 
   # REDIRECT
 
   get '/*' do
+    flash[:notice] = "page not found"
     redirect '/'
   end
+
 end
