@@ -10,3 +10,4 @@ gem "sinatra-flash"
 gem 'sinatra-static-assets'
 gem "sinatra-activerecord"
 gem "activerecord"
+gem "padrino-helpers"
