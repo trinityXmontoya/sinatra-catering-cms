@@ -18,6 +18,10 @@ class CateringApp
     erb :'main/index', main_layout
   end
 
+  get '/demo1' do
+    erb :"main/demo1"
+  end
+
   get '/menu' do
     @categories = Category.includes(:menu_items)
     erb :'main/menu', main_layout
@@ -29,6 +33,10 @@ class CateringApp
 
   get '/contact' do
     erb :'main/contact', main_layout
+  end
+
+  get '/gallery' do
+    erb :'main/gallery', main_layout
   end
 
   get '/testimonials' do
@@ -112,6 +120,10 @@ class CateringApp
     create_obj("site_photos",params[:category])
   end
 
+  delete '/admin/:type/:id' do
+    destroy_obj(params[:obj],params[:id])
+  end
+
   def success_msg
     flash[:notice]="Succesfully created"
   end
@@ -122,9 +134,20 @@ class CateringApp
 
   def create_obj(type,obj)
     if type.includes? "_"
+      klass = type.split("_").map {|x| x.capitalize}.join
+    else
+      klass = type.capitalize
+    end
+    obj = klass.constantize.new(obj)
+    obj.save ? success_msg : error_msg
+    redirect "/admin/#{type.pluralize}"
+  end
+
+  def destroy_obj(type,id)
+    if type.includes? "_"
       obj = type.split("_").map {|x| x.capitalize}.join
     else
-      obj = type.capitalize.constantize.new(obj)
+      obj = type.capitalize.constantize.destroy(id)
     end
     obj.save ? success_msg : error_msg
     redirect "/admin/#{type.pluralize}"

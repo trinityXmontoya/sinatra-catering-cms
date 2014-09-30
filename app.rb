@@ -29,6 +29,17 @@ class CateringApp < Sinatra::Application
       '/js/plugins/metisMenu/*.js',
       '/js/sb-admin-2.js'
     ]
+    js :demo1, [
+      '/js/agency.js',
+      '/js/bootstrap.js',
+      '/js/bootstrap.min.js',
+      '/js/cbpAnimatedHeader.js',
+      '/js/cbpAnimatedHeader.min.js',
+      '/js/classie.js',
+      '/js/contact_me.js',
+      '/js/jqBootstrapValidation.js',
+      '/js/jquery-1.11.0.js'
+    ]
 
     serve '/css', :from => 'public/stylesheets'
     css :application, [
@@ -41,6 +52,11 @@ class CateringApp < Sinatra::Application
        '/css/plugins/metisMenu/*.css',
        '/css/*.css'
       ]
+      css :demo1, [
+        '/css/agency.css',
+        '/css/bootstrap.min.css'
+       ]
+
 
     js_compression :jsmin
     css_compression :sass
