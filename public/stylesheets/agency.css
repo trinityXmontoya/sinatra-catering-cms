@@ -4,6 +4,35 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
+.testimonial-label {
+  font-size: 25px
+}
+
+.testimonial {
+  /*margin: 20px 0;*/
+}
+
+#submit-testimonial .btn {
+  width: 170px;
+  height: 40px;
+  font-size: 12px;
+  padding: 10px;
+  margin: 0 auto;
+  float: right;
+}
+
+.about-description {
+  margin: 0 auto;
+}
+.about-description img {
+  border: solid 6px black;
+  margin: 0 auto;
+  border-radius: 3px;
+}
+.about-description .description {
+  max-width: 500px;
+  margin: 0 auto;
+}
 
 .byline {
   font-size: 0.6em;
@@ -23,7 +52,7 @@
 }
 
 #myCarousel {
-  width: 600px;
+  /*width: 600px;*/
   margin: 0 auto;
 }
 
@@ -285,6 +314,7 @@ fieldset[disabled] .btn-xl.active {
 }
 
 header {
+    min-height: 350px;
     text-align: center;
     color: #fff;
     background-attachment: scroll;
@@ -448,26 +478,6 @@ section h3.section-subheading {
     #menu .portfolio-item {
         margin: 0 0 30px;
     }
-}
-
-.team-member {
-    margin-bottom: 50px;
-    text-align: center;
-}
-
-.team-member img {
-    margin: 0 auto;
-    border: 7px solid #fff;
-}
-
-.team-member h4 {
-    margin-top: 25px;
-    margin-bottom: 0;
-    text-transform: none;
-}
-
-.team-member p {
-    margin-top: 0;
 }
 
 section#contact {

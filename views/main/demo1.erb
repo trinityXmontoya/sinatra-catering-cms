@@ -131,7 +131,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-12">
                     <div id="myCarousel" class="carousel slide">
                       <ol class="carousel-indicators">
                         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -166,7 +166,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 portfolio-item">
+                <div class="col-lg-12 portfolio-item">
                     <a href="#menuModal" class="portfolio-link" data-toggle="modal">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content">
@@ -186,22 +186,17 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">About</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-12 about-description">
                   <img src="images/hannah.jpg" class="img-responsive img-circle" alt="">
-                  <h4>Hannah's Dad</h4>
-                  <p class="text-muted">Chef</p>
-                  <ul class="list-inline social-buttons">
-                      <li><a href="#"><i class="fa fa-twitter"></i></a>
-                      </li>
-                      <li><a href="#"><i class="fa fa-facebook"></i></a>
-                      </li>
-                      <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                      </li>
-                  </ul>
+                  <div class="description">
+                    <h4>Hannah's Dad</h4>
+                    <p class="text-muted">Chef</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae nihil, in commodi aspernatur! Explicabo quia nesciunt aliquam aspernatur, pariatur. Perspiciatis nobis hic aperiam, accusamus corrupti molestiae veniam obcaecati reprehenderit iure!</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae nihil, in commodi aspernatur! Explicabo quia nesciunt aliquam aspernatur, pariatur. Perspiciatis nobis hic aperiam, accusamus corrupti molestiae veniam obcaecati reprehenderit iure!</p>
+                  </div>
                 </div>
             </div>
         </div>
@@ -216,9 +211,17 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 portfolio-item">
-                    ALL THE PHOTOS
+              <% @testimonials.each do |t| %>
+                <div class="col-lg-4 col-md-4 testimonial">
+                  <blockquote>
+                    <p>"<%= t.comment %>"</p>
+                    <small><%= t.name %>, <span class="text-muted"><em>hired me for </em></span>  <%= t.event %>
+                  </blockquote>
                 </div>
+              <% end %>
+              <div id="submit-testimonial">
+                <a href="/new_testimonial" class="btn btn-xl">Submit a Testimonial</a>
+              </div>
             </div>
         </div>
     </section>
@@ -271,11 +274,11 @@
     <footer>
         <div class="container">
             <div class="row">
-                <div class="col-lg-5">
+                <div class="col-lg-12">
                     <p class="copyright">
                       Copyright &copy; gedhe pangan catering 2014
                       <br>
-                      Site design by <a href="http://edwww.trinitymontoya.com">Trinity Montoya</a>
+                      Site design by <a href="http://www.trinitymontoya.com">Trinity Montoya</a>
                     </p>
                 </div>
             </div>

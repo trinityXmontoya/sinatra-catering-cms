@@ -19,6 +19,7 @@ class CateringApp
   end
 
   get '/demo1' do
+    @testimonials = Testimonial.all
     erb :"main/demo1"
   end
 
@@ -43,6 +44,10 @@ class CateringApp
     @testimonials = Testimonial.all
     @testimonial = Testimonial.new
     erb :'main/testimonials', main_layout
+  end
+
+  get '/new_testimonial' do
+    erb :'main/new_testimonials', main_layout
   end
 
   post '/testimonials' do
