@@ -6,5 +6,4 @@
 *.sass-cache
 /pkg
 /doc/api
-/Gemfile.lock
 .env
