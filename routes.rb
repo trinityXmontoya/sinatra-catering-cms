@@ -20,6 +20,7 @@ class CateringApp
 
   get '/demo1' do
     @testimonials = Testimonial.all
+    @categories = Category.all.includes(:menu_items)
     erb :"main/demo1"
   end
 

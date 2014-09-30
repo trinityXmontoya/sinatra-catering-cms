@@ -12,6 +12,18 @@
   /*margin: 20px 0;*/
 }
 
+.menu_item_title {
+  text-transform: lowercase
+}
+
+.category-photo {
+  width: 200px;
+  margin: 0
+}
+
+#category-container {
+  margin: 20px 0;
+}
 #submit-testimonial .btn {
   width: 170px;
   height: 40px;
