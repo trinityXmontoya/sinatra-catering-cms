@@ -330,7 +330,7 @@ header {
     text-align: center;
     color: #fff;
     background-attachment: scroll;
-    background-image: url('http://www.philipwebb.co.uk/images/new_large/squash_still_life_country_living_54525.jpg');
+    background-image: url('/images/header-bg.jpg');
     background-position: center center;
     background-repeat: none;
     -webkit-background-size: cover;
