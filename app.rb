@@ -40,6 +40,17 @@ class CateringApp < Sinatra::Application
       '/js/jqBootstrapValidation.js',
       '/js/jquery-1.11.0.js'
     ]
+    js :demo2, [
+      '/js/bootstrap.min.js',
+      '/js/animation.js',
+      '/js/carousels.js',
+      '/js/classie.js',
+      '/js/modernizr.js',
+      '/js/normal.js',
+      '/js/slider-modernizr.js',
+      '/js/portfolio-effects.js',
+      '/js/toucheffects.js'
+    ]
 
     serve '/css', :from => 'public/stylesheets'
     css :application, [
@@ -55,6 +66,13 @@ class CateringApp < Sinatra::Application
       css :demo1, [
         '/css/agency.css',
         '/css/bootstrap.min.css'
+       ]
+       css :demo2, [
+       '/css/bootstrap.min.css',
+       '/css/animation.css',
+       '/css/normal.css',
+       '/css/style1.css',
+       '/css/hoverex-all.css'
        ]
 
 

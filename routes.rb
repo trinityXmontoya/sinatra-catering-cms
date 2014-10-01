@@ -24,6 +24,13 @@ class CateringApp
     erb :"main/demo1"
   end
 
+  get '/demo2' do
+    @testimonials = Testimonial.all
+    @categories = Category.all.includes(:menu_items)
+    erb :"main/demo2"
+  end
+
+
   get '/menu' do
     @categories = Category.includes(:menu_items)
     erb :'main/menu', main_layout
