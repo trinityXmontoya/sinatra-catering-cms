@@ -5,7 +5,9 @@ class CateringApp
   end
 
   def authorize!
+    puts "CHECKING AUTHORIZATION"
     unless current_user
+      puts "UHOH"
       flash[:notice] = "You are not authorizde to access that page."
       redirect '/'
     end

@@ -16,6 +16,7 @@ class CateringApp
 
     serve '/css', :from => 'public/stylesheets'
     css :application, [
+      '/css/style.css',
       '/css/agency.css'
      ]
      css :admin, [

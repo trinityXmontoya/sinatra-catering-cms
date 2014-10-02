@@ -18,23 +18,10 @@
                     <th>Name</th>
                     <th>Event</th>
                     <th>Comment</th>
-                    <th>Approved?</th>
+                    <th>Approved for view on site?</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <script>
-                    $(document).ready( function(){
-                      $('input[name="approved_status"]').on('click', function(){
-                        var id = this.getAttribute('data-id')
-                        var value = this.value
-                        $.ajax({
-                            url: "/admin/testimonial/"+id,
-                            type: "PUT",
-                            data: { value: value }
-                          })
-                        })
-                      })
-                  </script>
                 <% @testimonials.each do |t| %>
                   <tr class="odd gradeX">
                     <td><%= t.name %></td>
@@ -56,3 +43,5 @@
     </div><!-- /.panel -->
   </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
+
+<script src="/js/approveTestimonial"></script>

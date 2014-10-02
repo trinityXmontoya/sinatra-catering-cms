@@ -331,7 +331,6 @@ header {
     text-align: center;
     color: #fff;
     background-attachment: scroll;
-    background-image: url('/images/header-bg.jpg');
     background-position: center center;
     background-repeat: none;
     -webkit-background-size: cover;

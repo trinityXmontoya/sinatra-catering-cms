@@ -72,10 +72,10 @@
     </nav>
 
     <!-- Header -->
-    <header>
+    <header style="background-image:url('<%= @site.header_img %>')">
         <div class="container">
             <div class="intro-text">
-                <div class="intro-lead-in">Home cooking, just way better.</div>
+                <div class="intro-lead-in"><%= @site.header_description %></div>
                 <!-- <div class="intro-heading">It's Nice To Meet You</div> -->
                 <a href="#services" class="page-scroll btn btn-xl">Learn More</a>
             </div>
@@ -88,7 +88,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">Services</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h3 class="section-subheading text-muted"><%= @site.services_byline %></h3>
                 </div>
             </div>
             <div class="row text-center">
@@ -97,16 +97,16 @@
                         <i class="fa fa-circle fa-stack-2x text-primary"></i>
                         <i class="fa fa-glass fa-stack-1x fa-inverse"></i>
                     </span>
-                    <h4 class="service-heading">Parties</h4>
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                    <h4 class="service-heading">Events</h4>
+                    <p class="text-muted"><%= @site.event_description %></p>
                 </div>
                 <div class="col-md-4">
                     <span class="fa-stack fa-4x">
                         <i class="fa fa-circle fa-stack-2x text-primary"></i>
                         <i class="fa fa-home fa-stack-1x fa-inverse"></i>
                     </span>
-                    <h4 class="service-heading">At Home</h4>
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                    <h4 class="service-heading">Dinner Parties</h4>
+                    <p class="text-muted"><%= @site.home_description  %></p>
                 </div>
                 <div class="col-md-4">
                     <span class="fa-stack fa-4x">
@@ -114,7 +114,7 @@
                         <i class="fa fa-building-o fa-stack-1x fa-inverse"></i>
                     </span>
                     <h4 class="service-heading">Office</h4>
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                    <p class="text-muted"><%= @site.office_description  %></p>
                 </div>
             </div>
         </div>
@@ -171,7 +171,7 @@
                                 <i class="fa fa-search-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="https://d13yacurqjgara.cloudfront.net/users/73492/screenshots/994986/food.jpg" class="img-responsive" alt="">
+                        <img src="<%= @site.menu_bg_img %>" class="img-responsive" alt="">
                     </a>
                 </div>
             </div>
@@ -188,13 +188,12 @@
             </div>
             <div class="row">
                 <div class="col-lg-12 about-description">
-                  <img src="images/hannah.jpg" class="img-responsive img-circle" alt="">
+                  <img src="<%= @site.about_img %>" class="img-responsive img-circle" alt="">
                   <div class="description">
-                    <h4>Hannah's Dad</h4>
-                    <p class="text-muted">Chef</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae nihil, in commodi aspernatur! Explicabo quia nesciunt aliquam aspernatur, pariatur. Perspiciatis nobis hic aperiam, accusamus corrupti molestiae veniam obcaecati reprehenderit iure!</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae nihil, in commodi aspernatur! Explicabo quia nesciunt aliquam aspernatur, pariatur. Perspiciatis nobis hic aperiam, accusamus corrupti molestiae veniam obcaecati reprehenderit iure!</p>
-                  </div>
+                    <h4><%= @site.about_name %></h4>
+                    <p class="text-muted"><%= @site.about_byline %></p>
+                    <p><%= @site.about_description %></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -257,12 +256,12 @@
 </div>
 
     <!-- Contact Grid Section -->
-    <section id="contact">
+    <section id="contact" style="background-image:url('<%= @site.contact_img %>')">
       <div class="container">
           <div class="row">
               <div class="col-lg-12 text-center">
                   <h2 class="section-heading">Contact Us</h2>
-                  <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                  <h3 class="section-subheading text-muted"><%= @site.contact_byline%></h3>
               </div>
           </div>
           <div class="row">
@@ -306,7 +305,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <p class="copyright">
-                      Copyright &copy; gedhe pangan catering 2014
+                      Copyright &copy; anousheh catering 2014
                       <br>
                       Site design by <a href="http://www.trinitymontoya.com">Trinity Montoya</a>
                     </p>
