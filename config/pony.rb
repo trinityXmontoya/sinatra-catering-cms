@@ -1,4 +1,3 @@
-require 'pony'
 Pony.options = {
   :to => 'montoyat93@gmail.com',
   :subject => "Anousheh-Catering.com - Contact Form",

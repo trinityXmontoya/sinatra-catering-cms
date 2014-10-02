@@ -21,7 +21,7 @@ class CateringApp
      css :admin, [
        '/css/plugins/*.css',
        '/css/plugins/metisMenu/*.css',
-       '/css/*.css'
+       '/css/sb-admin-2.css'
       ]
     js_compression :jsmin
     css_compression :sass

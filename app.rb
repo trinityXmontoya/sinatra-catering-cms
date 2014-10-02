@@ -7,6 +7,8 @@ require 'sinatra/reloader'
 require 'sinatra/flash'
 require 'sinatra/assetpack'
 require 'padrino-helpers'
+require 'pony'
+
 
 class CateringApp < Sinatra::Application
   enable :protect_from_csrf
@@ -15,8 +17,7 @@ class CateringApp < Sinatra::Application
   register Sinatra::AssetPack
 end
 
-require './db_init'
-require './pony_init'
-require './asset_init'
+# require all config files
+Dir["./config/*.rb"].each {|file| require file }
 require './auth'
 require './routes'
