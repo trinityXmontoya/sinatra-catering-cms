@@ -34,8 +34,12 @@
 										<td><%= cat.name %></td>
 										<td><%= cat.description %></td>
 										<td class="center">Photo</td>
-										<td class="center">Edit | Delete</td>
-										<%= partial :'admin/edit', locals: {:model => cat} %>
+										<td class="center">
+											Edit
+											|
+											<%= link_to 'X', '/categories/'%>
+										</td>
+										<%#= partial :'admin/edit', locals: {:model => cat} %>
 									</tr>
 								<% end %>
 								</tbody>
@@ -43,7 +47,17 @@
 						</div><!-- /.table-responsive -->
 					</div><!-- /#list -->
 					<div class="tab-pane fade" id="add-new">
-						<h4>Add new</h4>
+							<% form_for @category, '/admin/categories' do |f| %>
+								<%= f.error_messages %>
+
+								<%= f.label :name %>
+								<%= f.text_field :name %>
+
+								<%= f.label :description %>
+								<%= f.text_field :description %>
+
+								<%= f.submit "Add"%>
+							<% end %>
 					</div><!-- /#add-new -->
 				</div><!-- /.tab-content -->
 			</div><!-- /.panel-body -->

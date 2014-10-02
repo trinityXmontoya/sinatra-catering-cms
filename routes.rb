@@ -8,62 +8,20 @@ class CateringApp
     {layout: 'admin/layout'}
   end
 
-  def main_layout
-    {layout: 'main/layout'}
-  end
-
   # MAIN
   # ------------------------------------
   get '/' do
-    erb :'main/index', main_layout
-  end
-
-  get '/demo1' do
     @testimonials = Testimonial.all
     @categories = Category.all.includes(:menu_items)
-    erb :"main/demo1"
-  end
-
-  get '/demo2' do
-    @testimonials = Testimonial.all
-    @categories = Category.all.includes(:menu_items)
-    erb :"main/demo2"
-  end
-
-
-  get '/menu' do
-    @categories = Category.includes(:menu_items)
-    erb :'main/menu', main_layout
-  end
-
-  get '/about' do
-    erb :'main/about', main_layout
-  end
-
-  get '/contact' do
-    erb :'main/contact', main_layout
-  end
-
-  get '/gallery' do
-    erb :'main/gallery', main_layout
-  end
-
-  get '/testimonials' do
-    @testimonials = Testimonial.all
-    @testimonial = Testimonial.new
-    erb :'main/testimonials', main_layout
-  end
-
-  get '/new_testimonial' do
-    erb :'main/new_testimonials', main_layout
+    erb :'main/index'
   end
 
   post '/testimonials' do
     testimonial = Testimonial.new(params[:testimonial])
     if testimonial.save
-      erb :testimonials; flash[:notice] = "Error saving."
+      erb :'main/index'; flash[:notice] = "Error saving."
     else
-      erb :testimonials
+      erb :'main/index'
     end
   end
 
