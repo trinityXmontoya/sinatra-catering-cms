@@ -4,9 +4,6 @@
     <% form_for @site, '/admin/site_info/1', method: :put do |f| %>
 
     <%= f.error_messages %>
-    
-    <%= f.label :header_img %>
-    <%= f.text_field :header_img %>
 
     <%= f.label :header_description %>
     <%= f.text_field :header_description %>
@@ -23,9 +20,6 @@
     <%= f.label :office_description %>
     <%= f.text_field :office_description %>
 
-    <%= f.label :about_img %>
-    <%= f.text_field :about_img %>
-
     <%= f.label :about_name %>
     <%= f.text_field :about_name %>
 
@@ -35,14 +29,8 @@
     <%= f.label :about_description %>
     <%= f.text_field :about_description %>
 
-    <%= f.label :contact_img %>
-    <%= f.text_field :contact_img %>
-
     <%= f.label :contact_byline %>
     <%= f.text_field :contact_byline %>
-
-    <%= f.label :menu_bg_img %>
-    <%= f.text_field :menu_bg_img %>
 
     <%= f.submit %>
 

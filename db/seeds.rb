@@ -47,3 +47,10 @@
 #   contact_byline: 'Lorem ipsum dolor sit amet consectetur.',
 #   menu_bg_img: '/images/food.jpg'
 # )
+#
+# GalleryImage.create(url:'/images/food1.jpg')
+# GalleryImage.create(url:'/images/food2.jpg')
+# GalleryImage.create(url:'/images/food3.jpg')
+# GalleryImage.create(url:'/images/food4.jpg')
+# GalleryImage.create(url:'/images/food5.jpg')
+# GalleryImage.create(url:'/images/food6.jpg')

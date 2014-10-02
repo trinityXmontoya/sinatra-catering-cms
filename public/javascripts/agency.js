@@ -24,3 +24,9 @@ $('body').scrollspy({
 $('.navbar-collapse ul li a').click(function() {
     $('.navbar-toggle:visible').click();
 });
+
+
+// dynamically add 'active' class to first carousel image (otherwise it won't show up)
+$(document).ready( function(){
+    $('.carousel-inner div:first-child').addClass('active')
+})

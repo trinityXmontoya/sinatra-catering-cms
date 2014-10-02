@@ -11,6 +11,7 @@ class CateringApp
     @testimonial = Testimonial.new
     @categories = Category.all.includes(:menu_items)
     @site = SiteInfo.find(1)
+    @gallery_images = GalleryImage.all
     erb :'main/index'
   end
 
@@ -75,8 +76,8 @@ class CateringApp
   end
 
   get '/admin/site_photos' do
-    @categories = Category.all
-    @category = Category.new
+    @site = SiteInfo.find(1)
+    @gallery_images = GalleryImage.all
     erb :'admin/site_photos', admin_layout
   end
 
