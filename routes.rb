@@ -8,6 +8,7 @@ class CateringApp
     {layout: 'admin/layout'}
   end
 
+  # ------------------------------------
   # MAIN
   # ------------------------------------
   get '/' do
@@ -25,6 +26,11 @@ class CateringApp
     end
   end
 
+  post '/contact' do
+    send_mail(params[:name],params[:email],params[:phone],params[:message])
+  end
+
+  # ------------------------------------
   # ADMIN
   # ------------------------------------
 
@@ -95,6 +101,20 @@ class CateringApp
     destroy_obj(params[:obj],params[:id])
   end
 
+  # ------------------------------------
+  # REDIRECT
+  # ------------------------------------
+
+  get '/*' do
+    flash[:notice] = "page not found"
+    redirect '/'
+  end
+
+
+  # ------------------------------------
+  # METHODS
+  # ------------------------------------
+
   def success_msg
     flash[:notice]="Succesfully created"
   end
@@ -124,11 +144,13 @@ class CateringApp
     redirect "/admin/#{type.pluralize}"
   end
 
-  # REDIRECT
 
-  get '/*' do
-    flash[:notice] = "page not found"
-    redirect '/'
+  def send_mail(name,email,phone,message)
+    Pony.mail :reply_to => email,
+              :body =>
+              "You have received a new message from your website contact form.\n\n Here are the details:\n\nName: #{name}\n\nEmail: #{email}\n\nPhone: #{phone}\n\nMessage:\n#{message}"
   end
+
+
 
 end

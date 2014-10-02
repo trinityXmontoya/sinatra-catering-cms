@@ -11,3 +11,4 @@ gem "sinatra-activerecord"
 gem "activerecord"
 gem "padrino-helpers"
 gem 'sinatra-assetpack', :require => 'sinatra/assetpack'
+gem "pony"
