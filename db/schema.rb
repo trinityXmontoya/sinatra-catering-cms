@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141002042618) do
+ActiveRecord::Schema.define(version: 20141002064142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,22 @@ ActiveRecord::Schema.define(version: 20141002042618) do
     t.string  "title"
     t.text    "description"
     t.integer "category_id"
+  end
+
+  create_table "site_info", force: true do |t|
+    t.string "header_img"
+    t.string "header_description"
+    t.string "services_byline"
+    t.text   "event_description"
+    t.text   "home_description"
+    t.text   "office_description"
+    t.string "about_img"
+    t.string "about_name"
+    t.string "about_byline"
+    t.text   "about_description"
+    t.string "contact_img"
+    t.string "contact_byline"
+    t.string "menu_bg_img"
   end
 
   create_table "testimonials", force: true do |t|

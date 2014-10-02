@@ -10,6 +10,7 @@ class CateringApp
     @testimonials = Testimonial.approved
     @testimonial = Testimonial.new
     @categories = Category.all.includes(:menu_items)
+    @site = SiteInfo.find(1)
     erb :'main/index'
   end
 
@@ -57,7 +58,8 @@ class CateringApp
   end
 
   get '/admin' do
-    erb :'admin/general', admin_layout
+    @site = SiteInfo.find(1)
+    erb :'admin/site_info', admin_layout
   end
 
   get %r{/admin/categories/?$}i do
@@ -103,9 +105,17 @@ class CateringApp
 
   put '/admin/:type/:id' do
     type = params[:type]
-    obj = find_class(type).find(params[:id])
-    if type == "testimonial"
-      obj.update(approved: !to_boolean(params[:value]))
+    puts "IM HERE"
+    puts type
+    if type == "site_info"
+      SiteInfo.find(1).update(params[:site_info])
+      redirect '/admin'
+    else
+      obj = find_class(type).find(params[:id])
+      if type == "testimonial"
+        obj.update(approved: !to_boolean(params[:value]))
+        obj.save
+      end
     end
   end
 
@@ -161,7 +171,7 @@ class CateringApp
 
   def destroy_obj(type,id)
     find_class(type).destroy(id)
-    redirect "/admin/#{type.pluralize}", flash[:notice]="#{type.capitalize} deleted."
+    redirect "/admin/#{type.pluralize}", flash[:notice]="Item deleted."
   end
 
 
