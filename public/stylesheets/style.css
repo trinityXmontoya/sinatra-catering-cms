@@ -6,3 +6,7 @@
 #login-error {
   margin-top: 20%
 }
+
+textarea {
+    resize: none;
+}
