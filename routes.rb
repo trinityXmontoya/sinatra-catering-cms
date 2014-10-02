@@ -3,27 +3,26 @@ class CateringApp
   # require all models
   Dir["./models/*.rb"].each {|file| require file }
 
-  # layout as params
-  def admin_layout
-    {layout: 'admin/layout'}
-  end
-
   # ------------------------------------
   # MAIN
   # ------------------------------------
   get '/' do
-    @testimonials = Testimonial.all
+    @testimonials = Testimonial.approved
+    @testimonial = Testimonial.new
     @categories = Category.all.includes(:menu_items)
     erb :'main/index'
   end
 
   post '/testimonials' do
-    testimonial = Testimonial.new(params[:testimonial])
+    testimonial = Testimonial.new(
+                      params[:testimonial],
+                      approved: false)
     if testimonial.save
-      erb :'main/index'; flash[:notice] = "Error saving."
+      flash[:notice] = "Submitted for approval."
     else
-      erb :'main/index'
+      flash[:notice] = "Error adding."
     end
+    redirect '/'
   end
 
   post '/contact' do
@@ -33,6 +32,11 @@ class CateringApp
   # ------------------------------------
   # ADMIN
   # ------------------------------------
+
+  # layout as params
+  def admin_layout
+    {layout: 'admin/layout'}
+  end
 
   before '/admin/*' do
     authorize!
@@ -56,10 +60,10 @@ class CateringApp
     erb :'admin/general', admin_layout
   end
 
-  get '/admin/categories' do
+  get %r{/admin/categories/?$}i do
     @categories = Category.all
     @category = Category.new
-    erb :'admin/categories', admin_layout
+    erb :'admin/categories1', admin_layout
   end
 
   get '/admin/menu_items' do
@@ -70,11 +74,11 @@ class CateringApp
 
   get '/admin/site_photos' do
     @categories = Category.all
-    @categort = Category.new
+    @category = Category.new
     erb :'admin/site_photos', admin_layout
   end
 
-  get '/admin/testimonials' do
+  get %r{/admin/testimonials/?$}i do
     @testimonials = Testimonial.all
     erb :'admin/testimonials', admin_layout
   end
@@ -97,8 +101,16 @@ class CateringApp
     create_obj("site_photos",params[:category])
   end
 
+  put '/admin/:type/:id' do
+    type = params[:type]
+    obj = find_class(type).find(params[:id])
+    if type == "testimonial"
+      obj.update(approved: !to_boolean(params[:value]))
+    end
+  end
+
   delete '/admin/:type/:id' do
-    destroy_obj(params[:obj],params[:id])
+    destroy_obj(params[:type],params[:id])
   end
 
   # ------------------------------------
@@ -123,32 +135,45 @@ class CateringApp
     flash[:notice]="Error saving."
   end
 
-  def create_obj(type,obj)
-    if type.includes? "_"
+  # since the value is coming from the database I know it is already lowercase
+  def to_boolean(str)
+    str == 'true'
+  end
+
+  def find_class(type)
+    if type.include? "_"
       klass = type.split("_").map {|x| x.capitalize}.join
     else
       klass = type.capitalize
     end
-    obj = klass.constantize.new(obj)
-    obj.save ? success_msg : error_msg
-    redirect "/admin/#{type.pluralize}"
+    return klass.constantize
+  end
+
+  def create_obj(type,obj_params)
+    obj = find_class(type).new(obj_params)
+    unless type == "testimonial"
+      obj.save ? success_msg : error_msg
+      redirect "/admin/#{type.pluralize}"
+    else
+      # obj.save ?
+    end
   end
 
   def destroy_obj(type,id)
-    if type.includes? "_"
-      obj = type.split("_").map {|x| x.capitalize}.join
-    else
-      obj = type.capitalize.constantize.destroy(id)
-    end
-    obj.save ? success_msg : error_msg
-    redirect "/admin/#{type.pluralize}"
+    find_class(type).destroy(id)
+    redirect "/admin/#{type.pluralize}", flash[:notice]="#{type.capitalize} deleted."
   end
 
 
   def send_mail(name,email,phone,message)
     Pony.mail :reply_to => email,
               :body =>
-              "You have received a new message from your website contact form.\n\n Here are the details:\n\nName: #{name}\n\nEmail: #{email}\n\nPhone: #{phone}\n\nMessage:\n#{message}"
+              "You have received a new message from your website contact form.\n\n
+               Here are the details:\n\n
+               Name: #{name}\n\n
+               Email: #{email}\n\n
+               Phone: #{phone}\n\n
+               Message:\n#{message}"
   end
 
 
