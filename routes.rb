@@ -32,16 +32,8 @@ class CateringApp
   end
 
   # ------------------------------------
-  # ADMIN
+  # ADMIN LOGIN
   # ------------------------------------
-
-  def admin_layout
-    {layout: 'admin/layout'}
-  end
-
-  before '/admin/*' do
-    authorize!
-  end
 
   get '/login' do
     erb :'admin/login'
@@ -61,6 +53,18 @@ class CateringApp
     session.clear
     flash[:notice] = "Logged out"
     redirect '/login'
+  end
+
+  # ------------------------------------
+  # ADMIN VIEWS
+  # ------------------------------------
+
+  def admin_layout
+    {layout: 'admin/layout'}
+  end
+
+  before '/admin*' do
+    authorize!
   end
 
   get '/admin' do
