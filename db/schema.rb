@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141003052948) do
+ActiveRecord::Schema.define(version: 20141003092347) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20141003052948) do
   create_table "categories", force: true do |t|
     t.string "name"
     t.string "description"
+    t.string "image"
   end
 
   create_table "gallery_images", force: true do |t|
@@ -51,7 +52,6 @@ ActiveRecord::Schema.define(version: 20141003052948) do
     t.string  "name"
     t.string  "event"
     t.string  "comment"
-    t.boolean "hidden",   default: false
     t.boolean "approved", default: false
   end
 

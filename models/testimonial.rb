@@ -8,6 +8,10 @@ class Testimonial < ActiveRecord::Base
     save
   end
 
+  def toggle_approved
+    update(approved: !approved)
+  end
+
   def self.approved
     where(approved: true)
   end

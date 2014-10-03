@@ -16,11 +16,10 @@ class CateringApp
   end
 
   post '/testimonials' do
-    testimonial = Testimonial.new(
-                      params[:testimonial],
-                      approved: false)
-    if testimonial.save
-      notify_of_testimonial(params[:testimonial])
+    obj_params = params[:testimonial]
+    obj = create_obj("testimonial", obj_params)
+    if obj.save
+      notify_of_testimonial(obj_params)
       flash[:notice] = "Submitted for approval."
     else
       flash[:notice] = "Error adding."
@@ -36,7 +35,6 @@ class CateringApp
   # ADMIN
   # ------------------------------------
 
-  # layout as params
   def admin_layout
     {layout: 'admin/layout'}
   end
@@ -59,8 +57,10 @@ class CateringApp
     end
   end
 
-  get '/dog' do
-    erb :'admin/dog', admin_layout
+  delete '/logout' do
+    session.clear
+    flash[:notice] = "Logged out"
+    redirect '/login'
   end
 
   get '/admin' do
@@ -68,7 +68,7 @@ class CateringApp
     erb :'admin/site_info', admin_layout
   end
 
-  get %r{/admin/categories/?$}i do
+  get '/admin/categories' do
     @categories = Category.all
     @category = Category.new
     erb :'admin/categories', admin_layout
@@ -80,80 +80,53 @@ class CateringApp
     erb :'admin/menu_items', admin_layout
   end
 
-  get '/admin/site_photos' do
-    @site = SiteInfo.find(1)
+  get '/admin/gallery_images' do
     @gallery_images = GalleryImage.all
-    erb :'admin/site_photos', admin_layout
-  end
-
-  get '/dog' do
     @gallery_image = GalleryImage.new
-    erb :'admin/dog', admin_layout
+    erb :'admin/gallery_images', admin_layout
   end
 
-  post '/gallery_image' do
-    g = GalleryImage.new(params[:gallery_image])
-    if g.save
-      puts "WE DID IT HOMES"
-      redirect '/dog'
-    else
-      puts "OHHH NO"
-      redirect '/dog'
-    end
-  end
-
-  get %r{/admin/testimonials/?$}i do
+  get '/admin/testimonials' do
     @testimonials = Testimonial.all
     erb :'admin/testimonials', admin_layout
   end
 
-  delete '/logout' do
-    session.clear
-    flash[:notice] = "Logged out"
-    redirect '/'
-  end
-
-  post '/admin/categories' do
-    create_obj("category",params[:category])
-  end
-
-  post '/admin/menu_items' do
-    create_obj("menu_item",params[:menu_item])
-  end
-
-  post '/admin/site_photos' do
-    create_obj("site_photos",params[:category])
+  post '/admin/:type' do
+    type = params[:type].singularize
+    obj = create_obj(type, params[type.to_sym])
+    obj.save ? success_msg : error_msg
+    redirect "/admin/#{params[:type]}"
   end
 
   put '/admin/:type/:id' do
     type = params[:type]
-    puts "IM HERE"
-    puts type
-    if type == "site_info"
-      SiteInfo.find(1).update(params[:site_info])
-      redirect '/admin'
+    obj = find_class(type).find(params[:id])
+    if type == "testimonial"
+      obj.toggle_approved
     else
-      obj = find_class(type).find(params[:id])
-      if type == "testimonial"
-        obj.update(approved: !to_boolean(params[:value]))
-      elsif type == "gallery_image"
-        obj.update(params[:gallery_image])
-      end
-      if obj.save
-        redirect '/admin', success_msg("saved")
-      else
-        redirect '/admin', error_msg
-      end
+      obj.update(params[type.to_sym])
     end
+    obj.save ? success_msg : error_msg
+    redirect "/admin/#{type.pluralize}"
   end
 
   delete '/admin/:type/:id' do
-    destroy_obj(params[:type],params[:id])
+    if destroy_obj(params[:type],params[:id])
+      flash[:notice]="Item deleted."
+    else
+      error_msg
+    end
+      redirect "/admin/#{params[:type].pluralize}"
   end
 
+
   # ------------------------------------
-  # REDIRECT
+  # REDIRECTS
   # ------------------------------------
+
+  get '/admin/*' do
+    redirect '/admin'
+  end
 
   get '/*' do
     flash[:notice] = "page not found"
@@ -165,17 +138,12 @@ class CateringApp
   # METHODS
   # ------------------------------------
 
-  def success_msg(type)
-    flash[:notice]="Succesfully #{type}."
+  def success_msg
+    flash[:notice]="Succesfully saved."
   end
 
   def error_msg
     flash[:notice]="Error saving."
-  end
-
-  # since the value is coming from the database I know it is already lowercase
-  def to_boolean(str)
-    str == 'true'
   end
 
   def find_class(type)
@@ -188,20 +156,12 @@ class CateringApp
   end
 
   def create_obj(type,obj_params)
-    obj = find_class(type).new(obj_params)
-    unless type == "testimonial"
-      obj.save ? success_msg("created") : error_msg
-      redirect "/admin/#{type.pluralize}"
-    else
-      # obj.save ?
-    end
+    find_class(type).new(obj_params)
   end
 
   def destroy_obj(type,id)
     find_class(type).destroy(id)
-    redirect "/admin/#{type.pluralize}", flash[:notice]="Item deleted."
   end
-
 
   def send_mail(name,email,phone,message)
     Pony.mail :reply_to => email,

@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-lg-12">
-    <h1 class="page-header">Site Photos</h1>
+    <h1 class="page-header">Gallery Images</h1>
   </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
 
@@ -10,34 +10,13 @@
       <div class="panel-heading"></div><!-- /.panel-heading -->
       <div class="panel-body">
         <ul class="nav nav-tabs">
-          <li class="active"><a href="#site-photos" data-toggle="tab">Site Images</a>
+          <li class="active"><a href="#gallery-images" data-toggle="tab">Current</a>
           </li>
-          <li class><a href="#gallery-photos" data-toggle="tab">Gallery Images</a>
+          <li class><a href="#add-gallery-images" data-toggle="tab">Add More</a>
           </li>
         </ul>
         <div class="tab-content">
-          <div class="tab-pane fade in active" id="site-photos">
-            <% form_for @site, '/admin/site_info/1', method: :put do |f| %>
-
-            <%= f.error_messages %>
-
-            <%= f.label :header_img %>
-            <%= f.text_field :header_img %>
-
-            <%= f.label :about_img %>
-            <%= f.text_field :about_img %>
-
-            <%= f.label :contact_img %>
-            <%= f.text_field :contact_img %>
-
-            <%= f.label :menu_bg_img %>
-            <%= f.text_field :menu_bg_img %>
-
-            <%= f.submit %>
-
-            <% end %>
-          </div><!-- /#site-photos -->
-          <div class="tab-pane fade" id="gallery-photos">
+          <div class="tab-pane fade in active" id="gallery-images">
             <% @gallery_images.each do |g_img| %>
               <% form_for g_img, "/admin/gallery_image/#{g_img.id}", method: :put, :html => {:multipart => true} do |f| %>
                 <%= image_tag(g_img.image, width: '100px') if g_img.image? %>
@@ -49,8 +28,14 @@
               <%= button_to 'Delete', url("/admin/gallery_image/#{g_img.id}"), :method => :delete %>
             <% end %>
           </div><!-- /#gallery-photos -->
-          <div class="tab-pane fade" id="menu-photos">
-
+          <div class="tab-pane fade" id="add-gallery-images">
+            <% form_for @gallery_image, '/admin/gallery_images' do |f| %>
+              <%= image_tag(@gallery_image.image, width: '100px') if @gallery_image.image? %>
+              <%= f.label :image %>
+              <%= f.file_field :image %>
+              <%= f.hidden_field :image_cache %>
+              <%= f.submit %>
+            <% end %>
           </div><!-- /#menu-photos -->
         </div><!-- /.tab-content -->
       </div><!-- /.panel-body -->

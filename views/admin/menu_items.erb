@@ -31,7 +31,11 @@
                 <% @menu_items.each do |m_i| %>
                   <tr class="odd gradeX">
                     <td>
-                    <%= m_i.category.name %>
+                    <% if m_i.category %>
+                      <%= m_i.category.name %>
+                    <% else %>
+                      ***No category-unlisted***
+                    <% end %>
                     </td>
                     <td><%= m_i.title %></td>
                     <td><%= m_i.description %></td>
