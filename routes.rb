@@ -20,6 +20,7 @@ class CateringApp
                       params[:testimonial],
                       approved: false)
     if testimonial.save
+      notify_of_testimonial(params[:testimonial])
       flash[:notice] = "Submitted for approval."
     else
       flash[:notice] = "Error adding."
@@ -56,6 +57,10 @@ class CateringApp
       flash[:notice] = "Error logging in."
       redirect '/login'
     end
+  end
+
+  get '/dog' do
+    erb :'admin/dog', admin_layout
   end
 
   get '/admin' do
@@ -200,6 +205,7 @@ class CateringApp
 
   def send_mail(name,email,phone,message)
     Pony.mail :reply_to => email,
+              :subject => "Anousheh-Catering.com - Contact Form",
               :body =>
               "You have received a new message from your website contact form.\n\n
                Here are the details:\n\n
@@ -207,6 +213,18 @@ class CateringApp
                Email: #{email}\n\n
                Phone: #{phone}\n\n
                Message:\n#{message}"
+  end
+
+  def notify_of_testimonial(testimonial)
+    Pony.mail :subject => "Anousheh-Catering.com - Testimonial",
+              :headers => { 'Content-Type' => 'text/html' },
+              :body =>
+              "You have received a new testimonial.<br>
+               Here are the details:<br>
+               Name: #{testimonial[:name]}<br>
+               Event: #{testimonial[:event]}<br>
+               Comment: #{testimonial[:comment]}<br>
+               <a href='http://www.anousheh-catering.com/login'>Login to approve.</a>"
   end
 
 

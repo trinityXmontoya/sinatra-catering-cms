@@ -1,6 +1,5 @@
 Pony.options = {
   :to => 'montoyat93@gmail.com',
-  :subject => "Anousheh-Catering.com - Contact Form",
   :via => :smtp,
   :via_options => {
     :address              => 'smtp.gmail.com',
