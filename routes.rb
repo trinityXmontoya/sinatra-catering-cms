@@ -66,7 +66,7 @@ class CateringApp
   get %r{/admin/categories/?$}i do
     @categories = Category.all
     @category = Category.new
-    erb :'admin/categories1', admin_layout
+    erb :'admin/categories', admin_layout
   end
 
   get '/admin/menu_items' do
@@ -79,6 +79,22 @@ class CateringApp
     @site = SiteInfo.find(1)
     @gallery_images = GalleryImage.all
     erb :'admin/site_photos', admin_layout
+  end
+
+  get '/dog' do
+    @gallery_image = GalleryImage.new
+    erb :'admin/dog', admin_layout
+  end
+
+  post '/gallery_image' do
+    g = GalleryImage.new(params[:gallery_image])
+    if g.save
+      puts "WE DID IT HOMES"
+      redirect '/dog'
+    else
+      puts "OHHH NO"
+      redirect '/dog'
+    end
   end
 
   get %r{/admin/testimonials/?$}i do
@@ -115,7 +131,13 @@ class CateringApp
       obj = find_class(type).find(params[:id])
       if type == "testimonial"
         obj.update(approved: !to_boolean(params[:value]))
-        obj.save
+      elsif type == "gallery_image"
+        obj.update(params[:gallery_image])
+      end
+      if obj.save
+        redirect '/admin', success_msg("saved")
+      else
+        redirect '/admin', error_msg
       end
     end
   end
@@ -138,8 +160,8 @@ class CateringApp
   # METHODS
   # ------------------------------------
 
-  def success_msg
-    flash[:notice]="Succesfully created"
+  def success_msg(type)
+    flash[:notice]="Succesfully #{type}."
   end
 
   def error_msg
@@ -163,7 +185,7 @@ class CateringApp
   def create_obj(type,obj_params)
     obj = find_class(type).new(obj_params)
     unless type == "testimonial"
-      obj.save ? success_msg : error_msg
+      obj.save ? success_msg("created") : error_msg
       redirect "/admin/#{type.pluralize}"
     else
       # obj.save ?

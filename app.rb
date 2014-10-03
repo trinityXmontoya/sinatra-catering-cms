@@ -8,12 +8,16 @@ require 'sinatra/flash'
 require 'sinatra/assetpack'
 require 'padrino-helpers'
 require 'pony'
+require 'carrierwave'
+require 'carrierwave/orm/activerecord'
+require './uploaders/image_uploader'
 
 
 class CateringApp < Sinatra::Application
   enable :protect_from_csrf
   use Rack::Session::Cookie, :secret => ENV['SESSION_SECRET']
   register Padrino::Helpers
+  register Padrino::Rendering
   register Sinatra::AssetPack
 end
 

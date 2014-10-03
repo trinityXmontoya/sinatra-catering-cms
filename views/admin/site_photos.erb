@@ -39,10 +39,14 @@
           </div><!-- /#site-photos -->
           <div class="tab-pane fade" id="gallery-photos">
             <% @gallery_images.each do |g_img| %>
-              <% form_for g_img, "/admin/gallery_photos/#{g_img.id}" do |f| %>
-                <%= f.text_field :url %>
+              <% form_for g_img, "/admin/gallery_image/#{g_img.id}", method: :put, :html => {:multipart => true} do |f| %>
+                <%= image_tag(g_img.image, width: '100px') if g_img.image? %>
+                <%= f.label :image %>
+                <%= f.file_field :image %>
+                <%= f.hidden_field :image_cache %>
                 <%= f.submit %>
               <% end %>
+              <%= button_to 'Delete', url("/admin/gallery_image/#{g_img.id}"), :method => :delete %>
             <% end %>
           </div><!-- /#gallery-photos -->
           <div class="tab-pane fade" id="menu-photos">

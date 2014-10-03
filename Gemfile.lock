@@ -17,18 +17,56 @@ GEM
     arel (5.0.1.20140414130214)
     backports (3.6.0)
     builder (3.2.2)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
     dotenv (0.11.1)
       dotenv-deployment (~> 0.0.2)
     dotenv-deployment (0.0.2)
+    excon (0.39.6)
+    fog (1.23.0)
+      fog-brightbox
+      fog-core (~> 1.23)
+      fog-json
+      fog-softlayer
+      ipaddress (~> 0.5)
+      nokogiri (~> 1.5, >= 1.5.11)
+    fog-brightbox (0.5.1)
+      fog-core (~> 1.22)
+      fog-json
+      inflecto
+    fog-core (1.24.0)
+      builder
+      excon (~> 0.38)
+      formatador (~> 0.2)
+      mime-types
+      net-scp (~> 1.1)
+      net-ssh (>= 2.1.3)
+    fog-json (1.0.0)
+      multi_json (~> 1.0)
+    fog-softlayer (0.3.19)
+      fog-core
+      fog-json
+    formatador (0.2.5)
     i18n (0.6.11)
+    inflecto (0.0.2)
+    ipaddress (0.8.0)
     jsmin (1.0.1)
     json (1.8.1)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
+    mini_portile (0.6.0)
     minitest (5.4.1)
     multi_json (1.10.1)
+    net-scp (1.2.1)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.9.1)
+    nokogiri (1.6.3.1)
+      mini_portile (= 0.6.0)
     padrino-helpers (0.12.3)
       i18n (~> 0.6, >= 0.6.7)
       padrino-support (= 0.12.3)
@@ -80,7 +118,9 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
+  carrierwave
   dotenv
+  fog
   padrino-helpers
   pg
   pony
