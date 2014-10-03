@@ -25,6 +25,7 @@ GEM
     dotenv (0.11.1)
       dotenv-deployment (~> 0.0.2)
     dotenv-deployment (0.0.2)
+    erubis (2.7.0)
     excon (0.39.6)
     fog (1.23.0)
       fog-brightbox
@@ -120,6 +121,7 @@ DEPENDENCIES
   activerecord
   carrierwave
   dotenv
+  erubis
   fog
   padrino-helpers
   pg
