@@ -31,22 +31,22 @@
 # MenuItem.create!(title: "Clam chowder",
 #                 description: "as the Bostonians do it",
 #                 category_id: 3)
-# SiteInfo.create(
-#   id: 1,
-#   header_img: '/images/header-bg.jpg',
-#   header_description: 'Home cooking, just way better.',
-#   services_byline: 'Lorem ipsum dolor sit amet consectetur.',
-#   event_description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.',
-#   home_description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.',
-#   office_description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.',
-#   about_img: '/images/hannah.jpg',
-#   about_name: 'Hannahs Dad',
-#   about_byline: 'Chef',
-#   about_description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae nihil, in commodi aspernatur! Explicabo quia nesciunt aliquam aspernatur, pariatur. Perspiciatis nobis hic aperiam, accusamus corrupti molestiae veniam obcaecati reprehenderit iure! Lorem ipsum dolor sit amet, consectetur adip',
-#   contact_img: 'http://1.bp.blogspot.com/-vACW6_GN8mo/UTQTEaGyEfI/AAAAAAAAKS8/WtiohKatQLk/s1600/Pasta+with+Oregano+and+Feta+3.JPG',
-#   contact_byline: 'Lorem ipsum dolor sit amet consectetur.',
-#   menu_bg_img: '/images/food.jpg'
-# )
+SiteInfo.create(
+  id: 1,
+  header_img: '/images/header-bg.jpg',
+  header_description: 'Home cooking, just way better.',
+  services_byline: 'Lorem ipsum dolor sit amet consectetur.',
+  event_description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.',
+  home_description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.',
+  office_description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.',
+  about_img: '/images/hannah.jpg',
+  about_name: 'Hannahs Dad',
+  about_byline: 'Chef',
+  about_description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae nihil, in commodi aspernatur! Explicabo quia nesciunt aliquam aspernatur, pariatur. Perspiciatis nobis hic aperiam, accusamus corrupti molestiae veniam obcaecati reprehenderit iure! Lorem ipsum dolor sit amet, consectetur adip',
+  contact_img: 'http://1.bp.blogspot.com/-vACW6_GN8mo/UTQTEaGyEfI/AAAAAAAAKS8/WtiohKatQLk/s1600/Pasta+with+Oregano+and+Feta+3.JPG',
+  contact_byline: 'Lorem ipsum dolor sit amet consectetur.',
+  menu_bg_img: '/images/food.jpg'
+)
 #
 # GalleryImage.create(url:'/images/food1.jpg')
 # GalleryImage.create(url:'/images/food2.jpg')
