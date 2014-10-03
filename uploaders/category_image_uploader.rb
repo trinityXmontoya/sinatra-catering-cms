@@ -1,4 +1,4 @@
-class ImageUploader < CarrierWave::Uploader::Base
+class CategoryImageUploader < CarrierWave::Uploader::Base
   storage :fog
 
   def extension_white_list
@@ -6,6 +6,6 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def store_dir
-    'gallery_images'
+    "category_images"
   end
 end

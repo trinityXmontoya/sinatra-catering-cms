@@ -10,8 +10,9 @@ require 'padrino-helpers'
 require 'pony'
 require 'carrierwave'
 require 'carrierwave/orm/activerecord'
-require './uploaders/image_uploader'
 
+# require all uploader files
+Dir["./uploaders/*.rb"].each {|file| require file }
 
 class CateringApp < Sinatra::Application
   enable :protect_from_csrf
