@@ -8,13 +8,13 @@ class CateringApp
     puts "CHECKING AUTHORIZATION"
     unless current_user
       puts "UHOH"
-      flash[:notice] = "You are not authorizde to access that page."
+      flash[:notice] = "You are not authorized to access that page."
       redirect '/'
     end
   end
 
   def current_user
-    session[:user] == "admin"
+    session[:user] && session[:user] == "admin"
   end
 
 end
