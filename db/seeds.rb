@@ -4,7 +4,7 @@ Category.create!(id:3,name: "Dinner")
 
 Testimonial.create!(name: "Dan",
                     event: "Dinner Party",
-                    comment: "Loved it, most delicious meal I've ever had and my guests loved it! Will definitely call again."
+                    comment: "Loved it, most delicious meal I've ever had and my guests loved it! Will definitely call again.",
                     approved: true)
 Testimonial.create!(name: "Twitter",
                     event: "Office party",
