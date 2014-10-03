@@ -9,7 +9,6 @@ class CateringApp
       '/js/agency.js'
     ]
     js :admin, [
-      '/js/admin.js',
       '/js/plugins/metisMenu/*.js',
       '/js/sb-admin-2.js'
     ]
