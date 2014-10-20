@@ -15,3 +15,4 @@ gem 'sinatra-assetpack', :require => 'sinatra/assetpack'
 gem "pony"
 gem 'carrierwave'
 gem "fog"
+gem "puma"
