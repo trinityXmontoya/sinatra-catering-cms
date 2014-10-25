@@ -77,21 +77,26 @@
 
           <div class="tab-pane fade" id="site-photos">
             <% form_for @site, '/admin/site_info/1', method: :put do |f| %>
-
+            <br>
+            <br>
             <%= f.error_messages %>
 
             <%= f.label :header_img %>
             <%= f.text_field :header_img %>
-
+            <br>
+            <br>
             <%= f.label :about_img %>
             <%= f.text_field :about_img %>
-
+            <br>
+            <br>
             <%= f.label :contact_img %>
             <%= f.text_field :contact_img %>
-
+            <br>
+            <br>
             <%= f.label :menu_bg_img %>
             <%= f.text_field :menu_bg_img %>
-
+            <br>
+            <br>
             <%= f.submit %>
 
             <% end %>
