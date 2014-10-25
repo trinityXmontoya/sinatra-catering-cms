@@ -21,7 +21,6 @@
 							<table class="table table-striped table-bordered table-hover" id="dataTables-example">
 								<thead>
 									<tr>
-										<th>ID</th>
 										<th>Name</th>
 										<th>Description</th>
 										<th>Photo</th>
@@ -30,19 +29,18 @@
 								<tbody>
 								<% @categories.each do |cat| %>
 									<tr class="odd gradeX">
-										<td><%= cat.id %></td>
-										<td><%= cat.name %></td>
-										<td><%= cat.description %></td>
+										<% form_for cat, "/admin/category/#{cat.id}", method: :put do |f| %>
+											<td><%= f.text_field :name %></td>
+											<td><%= f.text_field :description %></td>
+											<td class="center">
+												<%= image_tag(cat.image, width: '100px') if cat.image? %>
+												<%= f.file_field :image %>
+												<%= f.hidden_field :image_cache %>
+											</td>
 										<td class="center">
-											<% if cat.image? %>
-												<%= image_tag(cat.image, width: '100px') %>
-											<% else %>
-												No photo yet.
-										  <% end %>
-										</td>
-										<td class="center">
-											<p>Edit</p>
-											|
+											<p><%= f.submit "Update" %></p>
+										<% end %>
+											<hr>
 											<%= button_to 'Delete', url("/admin/category/#{cat.id}"), :method => :delete %>
 										</td>
 										<%#= partial :'admin/edit', locals: {:model => cat} %>
@@ -53,22 +51,28 @@
 						</div><!-- /.table-responsive -->
 					</div><!-- /#list -->
 					<div class="tab-pane fade" id="add-new">
-							<% form_for @category, '/admin/categories', :html => {:multipart => true} do |f| %>
+						<div>
+							<% form_for( @category, '/admin/categories', :html => {:multipart => true}) do |f| %>
 								<%= f.error_messages %>
-
+								<br>
+								<br>
 								<%= f.label :name %>
 								<%= f.text_field :name %>
-
+								<br>
+								<br>
 								<%= f.label :description %>
 								<%= f.text_field :description %>
-
+								<br>
+								<br>
 								<%= image_tag(@category.image, width: '100px') if @category.image? %>
-                <%= f.label :image %>
+                <%= f.label :image, caption: "Photo:" %>
                 <%= f.file_field :image %>
                 <%= f.hidden_field :image_cache %>
-
-								<%= f.submit "Add"%>
+								<br>
+								<br>
+								<%= f.submit "Add" %>
 							<% end %>
+						</div>
 					</div><!-- /#add-new -->
 				</div><!-- /.tab-content -->
 			</div><!-- /.panel-body -->

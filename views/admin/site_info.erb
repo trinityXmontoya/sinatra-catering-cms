@@ -18,35 +18,57 @@
 
           <div class="tab-pane fade in active" id="site-info">
             <% form_for @site, '/admin/site_info/1', method: :put do |f| %>
+            <%= f.error_messages %>
+            <table id="site-info-table" class="table table-striped table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Section</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                <td><%= f.label :header_description, caption: "HEADER" %></td>
+                <td><%= f.text_field :header_description %></td>
+                </tr>
+                <tr>
+                <td><%= f.label :services_byline, caption: "SERVICES BYLINE" %></td>
+                <td><%= f.text_field :services_byline %></td>
+                </tr>
+                <tr>
+                <td><%= f.label :event_description, caption: "EVENTS DESCRIPTION" %></td>
+                <td><%= f.text_area :event_description %></td>
+                </tr>
+                <tr>
+                <td><%= f.label :home_description, caption: "HOME DESCRIPTION" %></td>
+                <td><%= f.text_area :home_description %></td>
+                </tr>
+                <tr>
+                <td><%= f.label :office_description, caption: "OFFICE DESCRIPTION" %></td>
+                <td><%= f.text_area :office_description %></td>
+                </tr>
+                <tr>
+                <td><%= f.label :about_name, caption: "ABOUT NAME" %></td>
+                <td><%= f.text_field :about_name %></td>
+                </tr>
+                <tr>
+                <td><%= f.label :about_byline, caption: "ABOUT BYLINE" %></td>
+                <td><%= f.text_field :about_byline %></td>
+                </tr>
+                <tr>
+                <td><%= f.label :about_description, caption: "ABOUT DESCRIPTION" %></td>
+                <td><%= f.text_area :about_description %></td>
+                </tr>
+                <tr>
+                <td><%= f.label :contact_byline, caption: "CONTACT BYLINE" %></td>
+                <td><%= f.text_field :contact_byline %></td>
+                </tr>
+              </tbody>
+            </table>
 
-              <%= f.error_messages %>
 
-              <%= f.label :header_description %>
-              <%= f.text_field :header_description %>
 
-              <%= f.label :services_byline %>
-              <%= f.text_field :services_byline %>
 
-              <%= f.label :event_description %>
-              <%= f.text_field :event_description %>
-
-              <%= f.label :home_description %>
-              <%= f.text_field :home_description %>
-
-              <%= f.label :office_description %>
-              <%= f.text_field :office_description %>
-
-              <%= f.label :about_name %>
-              <%= f.text_field :about_name %>
-
-              <%= f.label :about_byline %>
-              <%= f.text_field :about_byline %>
-
-              <%= f.label :about_description %>
-              <%= f.text_field :about_description %>
-
-              <%= f.label :contact_byline %>
-              <%= f.text_field :contact_byline %>
 
               <%= f.submit %>
 

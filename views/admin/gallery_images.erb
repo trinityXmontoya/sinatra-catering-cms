@@ -18,14 +18,15 @@
         <div class="tab-content">
           <div class="tab-pane fade in active" id="gallery-images">
             <% @gallery_images.each do |g_img| %>
+              <br>
               <% form_for g_img, "/admin/gallery_image/#{g_img.id}", method: :put, :html => {:multipart => true} do |f| %>
-                <%= image_tag(g_img.image, width: '100px') if g_img.image? %>
-                <%= f.label :image %>
+                <%= image_tag(g_img.image, width: '200px') if g_img.image? %>
                 <%= f.file_field :image %>
                 <%= f.hidden_field :image_cache %>
                 <%= f.submit %>
               <% end %>
               <%= button_to 'Delete', url("/admin/gallery_image/#{g_img.id}"), :method => :delete %>
+              <br>
             <% end %>
           </div><!-- /#gallery-photos -->
           <div class="tab-pane fade" id="add-gallery-images">

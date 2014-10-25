@@ -10,3 +10,15 @@
 textarea {
     resize: none;
 }
+
+#site-info-table input, #site-info-table textarea {
+  width: 100%;
+}
+
+#site-info-table textarea {
+  height: 80px
+}
+
+#menu-item-table input[type="text"] {
+  width: 100%;
+}
